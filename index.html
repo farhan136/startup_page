@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevelopedByFarhan | Solusi Web Kustom & Transparan</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%234f46e5%22/><text y=%22.9em%22 font-size=%2270%22 x=%2210%22 fill=%22white%22 font-family=%22monospace%22>&gt;_</text></svg>">
+    <script>
+        // Set dark mode before page renders to avoid flash
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -20,6 +29,7 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .gradient-text {
@@ -34,8 +44,17 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(255,255,255,0.06) !important;
+        }
+
         .card-shadow {
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
         }
 
         .checkbox-card:checked+.card-content {
@@ -44,16 +63,34 @@
             transform: translateY(-2px);
         }
 
+        .dark .checkbox-card:checked+.card-content {
+            background-color: #1e1b4b;
+        }
+
         .transition-all-custom {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dark mode toggle button */
+        #dark-toggle {
+            transition: all 0.3s ease;
+        }
+
+        #dark-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Smooth dark transitions for key elements */
+        nav, section, footer, div, label, p, span, h1, h2, h3, h4, a, button {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-100">
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div
@@ -63,11 +100,25 @@
                 <span class="text-2xl font-extrabold tracking-tight italic">DevelopedBy<span
                         class="text-indigo-600">Farhan</span></span>
             </div>
-            <div class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
-                <a href="#kalkulator" class="hover:text-indigo-600 transition">Kalkulator</a>
-                <a href="#developer" class="hover:text-indigo-600 transition">Profil Dev</a>
+            <div class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600 dark:text-slate-300">
+                <a href="#kalkulator" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Kalkulator</a>
+                <a href="#developer" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Profil Dev</a>
+                <!-- Dark Mode Toggle -->
+                <button id="dark-toggle" aria-label="Toggle dark mode"
+                    class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-700">
+                    <i class="fas fa-moon text-sm dark:hidden"></i>
+                    <i class="fas fa-sun text-sm hidden dark:inline text-amber-400"></i>
+                </button>
                 <a href="https://wa.me/YOUR_NUMBER"
                     class="bg-indigo-600 text-white px-6 py-2.5 rounded-full hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">Konsultasi</a>
+            </div>
+            <!-- Mobile dark toggle -->
+            <div class="flex md:hidden items-center gap-3">
+                <button id="dark-toggle-mobile" aria-label="Toggle dark mode"
+                    class="w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                    <i class="fas fa-moon text-sm dark:hidden"></i>
+                    <i class="fas fa-sun text-sm hidden dark:inline text-amber-400"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -77,7 +128,7 @@
         <div class="max-w-5xl mx-auto text-center">
             <div class="flex flex-col items-center gap-4 mb-8">
                 <div
-                    class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-xs font-bold animate-bounce">
+                    class="inline-flex items-center gap-2 bg-indigo-50 dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 px-4 py-2 rounded-full text-xs font-bold animate-bounce">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
@@ -90,13 +141,13 @@
                 Website Profesional <br>
                 <span class="gradient-text">Harga Jujur.</span>
             </h1>
-            <p class="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
+            <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12">
                 Di <strong>DevelopedByFarhan</strong>, kami membangun teknologi dari nol untuk bisnis Anda. Anda hanya
                 membayar
                 apa yang Anda butuhkan tanpa biaya paket yang membingungkan.
             </p>
             <a href="#kalkulator"
-                class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 transition shadow-xl inline-flex items-center gap-3 group">
+                class="bg-slate-900 dark:bg-white dark:text-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition shadow-xl inline-flex items-center gap-3 group">
                 Mulai Hitung Estimasi
                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
             </a>
@@ -104,31 +155,31 @@
     </section>
 
     <!-- Kalkulator Section -->
-    <section id="kalkulator" class="py-20 px-6 bg-white">
+    <section id="kalkulator" class="py-20 px-6 bg-white dark:bg-slate-900">
         <div class="max-w-6xl mx-auto">
             <div class="grid lg:grid-cols-12 gap-12">
 
                 <!-- Input Area -->
                 <div class="lg:col-span-8">
                     <div class="mb-10">
-                        <h2 class="text-3xl font-extrabold mb-2 text-slate-900">Pilih Komponen Web</h2>
-                        <p class="text-slate-500">Sesuaikan fitur dengan budget dan kebutuhan bisnis Anda.</p>
+                        <h2 class="text-3xl font-extrabold mb-2 text-slate-900 dark:text-white">Pilih Komponen Web</h2>
+                        <p class="text-slate-500 dark:text-slate-400">Sesuaikan fitur dengan budget dan kebutuhan bisnis Anda.</p>
                     </div>
 
                     <!-- Pilihan Sistem Kustom (Utama) -->
                     <div class="mb-8">
                         <label class="relative cursor-pointer group">
                             <input type="checkbox" id="check-complex" class="hidden">
-                            <div class="p-6 border-2 border-slate-100 rounded-3xl group-hover:border-indigo-200 transition-all flex items-center justify-between bg-slate-50"
+                            <div class="p-6 border-2 border-slate-100 dark:border-slate-700 rounded-3xl group-hover:border-indigo-200 transition-all flex items-center justify-between bg-slate-50 dark:bg-slate-800"
                                 id="complex-trigger-card">
                                 <div class="flex items-center gap-4">
                                     <div
-                                        class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl">
+                                        class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center text-xl">
                                         <i class="fas fa-microchip"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-lg">Sistem Kustom / Kompleks</h4>
-                                        <p class="text-sm text-slate-500">Toko Online, Sistem HR, Inventaris, atau
+                                        <h4 class="font-bold text-lg dark:text-white">Sistem Kustom / Kompleks</h4>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">Toko Online, Sistem HR, Inventaris, atau
                                             Aplikasi Web Khusus.</p>
                                     </div>
                                 </div>
@@ -143,14 +194,14 @@
 
                         <!-- Page Selection -->
                         <div>
-                            <h4 class="font-bold text-indigo-900 mb-6 flex items-center gap-2">
+                            <h4 class="font-bold text-indigo-900 dark:text-indigo-300 mb-6 flex items-center gap-2">
                                 <i class="fas fa-layer-group"></i> Struktur Halaman & Section
                             </h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Home -->
                                 <label class="relative cursor-not-allowed">
-                                    <div class="p-5 border-2 border-indigo-500 bg-indigo-50 rounded-2xl">
-                                        <div class="flex justify-between font-bold text-indigo-900">
+                                    <div class="p-5 border-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-950 rounded-2xl">
+                                        <div class="flex justify-between font-bold text-indigo-900 dark:text-indigo-200">
                                             <span>Home / Landing Section</span>
                                             <span>75.000</span>
                                         </div>
@@ -161,55 +212,55 @@
                                 <label class="relative cursor-pointer">
                                     <input type="checkbox" class="page-check hidden checkbox-card" data-price="50000">
                                     <div
-                                        class="card-content p-5 border-2 border-slate-100 rounded-2xl transition-all-custom flex flex-col h-full">
+                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
                                         <div class="flex justify-between font-bold mb-1"><span>About Us</span>
                                             <span>50.000</span>
                                         </div>
-                                        <p class="text-xs text-slate-500">Halaman profil dan visi misi perusahaan.</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Halaman profil dan visi misi perusahaan.</p>
                                     </div>
                                 </label>
 
                                 <label class="relative cursor-pointer">
                                     <input type="checkbox" class="page-check hidden checkbox-card" data-price="50000">
                                     <div
-                                        class="card-content p-5 border-2 border-slate-100 rounded-2xl transition-all-custom flex flex-col h-full">
+                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
                                         <div class="flex justify-between font-bold mb-1"><span>FAQ</span>
                                             <span>50.000</span>
                                         </div>
-                                        <p class="text-xs text-slate-500">Daftar tanya jawab umum untuk user.</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Daftar tanya jawab umum untuk user.</p>
                                     </div>
                                 </label>
 
                                 <label class="relative cursor-pointer">
                                     <input type="checkbox" class="page-check hidden checkbox-card" data-price="50000">
                                     <div
-                                        class="card-content p-5 border-2 border-slate-100 rounded-2xl transition-all-custom flex flex-col h-full">
+                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
                                         <div class="flex justify-between font-bold mb-1"><span>Contact</span>
                                             <span>50.000</span>
                                         </div>
-                                        <p class="text-xs text-slate-500">Formulir pesan dan info lokasi.</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Formulir pesan dan info lokasi.</p>
                                     </div>
                                 </label>
 
                                 <label class="relative cursor-pointer">
                                     <input type="checkbox" class="page-check hidden checkbox-card" data-price="70000">
                                     <div
-                                        class="card-content p-5 border-2 border-slate-100 rounded-2xl transition-all-custom flex flex-col h-full">
+                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
                                         <div class="flex justify-between font-bold mb-1"><span>Blog / Gallery</span>
                                             <span>70.000</span>
                                         </div>
-                                        <p class="text-xs text-slate-500">Halaman daftar artikel atau foto (Statis).</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Halaman daftar artikel atau foto (Statis).</p>
                                     </div>
                                 </label>
 
                                 <label class="relative cursor-pointer">
                                     <input type="checkbox" class="page-check hidden checkbox-card" data-price="75000">
                                     <div
-                                        class="card-content p-5 border-2 border-slate-100 rounded-2xl transition-all-custom flex flex-col h-full">
+                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
                                         <div class="flex justify-between font-bold mb-1"><span>Halaman Kustom</span>
                                             <span>75.000</span>
                                         </div>
-                                        <p class="text-xs text-slate-500">Sesuai permintaan kebutuhan spesifik Anda.</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Sesuai permintaan kebutuhan spesifik Anda.</p>
                                     </div>
                                 </label>
                             </div>
@@ -238,59 +289,59 @@
                         <!-- Add-ons & Design -->
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
-                                <h4 class="font-bold text-slate-800 mb-4">Fitur Tambahan</h4>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-4">Fitur Tambahan</h4>
                                 <div class="space-y-3">
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition">
+                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
                                             class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="250000">
                                         <div class="text-sm">
                                             <p class="font-bold">Payment Gateway</p>
-                                            <p class="text-xs text-slate-500">250.000 (Otomatis)</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">250.000 (Otomatis)</p>
                                         </div>
                                     </label>
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition">
+                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
                                             class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="30000">
                                         <div class="text-sm">
                                             <p class="font-bold">Google Maps</p>
-                                            <p class="text-xs text-slate-500">30.000 (Integrasi Toko)</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">30.000 (Integrasi Toko)</p>
                                         </div>
                                     </label>
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition">
+                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
                                             class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="100000">
                                         <div class="text-sm">
                                             <p class="font-bold">Micro-site / LinkBio</p>
-                                            <p class="text-xs text-slate-500">100.000 (Khusus Instagram)</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">100.000 (Khusus Instagram)</p>
                                         </div>
                                     </label>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-slate-800 mb-4">Level Desain</h4>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-4">Level Desain</h4>
                                 <div class="space-y-3">
                                     <label
-                                        class="flex items-center gap-4 p-4 border-2 border-indigo-100 bg-indigo-50/50 rounded-2xl cursor-pointer">
+                                        class="flex items-center gap-4 p-4 border-2 border-indigo-100 dark:border-indigo-800 bg-indigo-50/50 dark:bg-indigo-950/50 rounded-2xl cursor-pointer">
                                         <input type="radio" name="design" value="0" checked
                                             class="w-5 h-5 text-indigo-600">
                                         <div class="text-sm">
                                             <p class="font-bold">Simple (Gratis)</p>
-                                            <p class="text-xs text-slate-500">Template standar & bersih.</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Template standar & bersih.</p>
                                         </div>
                                     </label>
                                     <label
-                                        class="flex items-center gap-4 p-4 border-2 border-slate-100 rounded-2xl cursor-pointer hover:border-indigo-100 transition">
+                                        class="flex items-center gap-4 p-4 border-2 border-slate-100 dark:border-slate-700 rounded-2xl cursor-pointer hover:border-indigo-100 dark:hover:border-indigo-700 transition dark:bg-slate-800">
                                         <input type="radio" name="design" value="350000"
                                             class="w-5 h-5 text-indigo-600">
                                         <div class="text-sm">
                                             <p class="font-bold">Advance (350.000)</p>
-                                            <p class="text-xs text-slate-500">Custom Layout & Animasi.</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Custom Layout & Animasi.</p>
                                         </div>
                                     </label>
                                 </div>
@@ -301,13 +352,13 @@
 
                     <!-- Custom Message Wrapper -->
                     <div id="custom-system-wrapper"
-                        class="hidden py-16 text-center bg-indigo-50 rounded-[3rem] border-2 border-dashed border-indigo-200 animate-fade-in">
+                        class="hidden py-16 text-center bg-indigo-50 dark:bg-indigo-950/30 rounded-[3rem] border-2 border-dashed border-indigo-200 dark:border-indigo-800 animate-fade-in">
                         <div
                             class="w-20 h-20 bg-indigo-600 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6 shadow-xl shadow-indigo-200">
                             <i class="fas fa-comments"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold text-indigo-900 mb-4">Mari Diskusikan Ide Anda!</h3>
-                        <p class="text-indigo-700 max-w-md mx-auto mb-8">
+                        <h3 class="text-3xl font-extrabold text-indigo-900 dark:text-indigo-200 mb-4">Mari Diskusikan Ide Anda!</h3>
+                        <p class="text-indigo-700 dark:text-indigo-300 max-w-md mx-auto mb-8">
                             Sistem kompleks membutuhkan analisis mendalam. Kami akan memberikan penawaran harga terbaik
                             setelah memahami kebutuhan spesifik bisnis Anda di <strong>DevelopedByFarhan</strong>.
                         </p>
@@ -323,7 +374,7 @@
                 <!-- Price Summary (Sticky) -->
                 <div class="lg:col-span-4">
                     <div class="sticky top-28 space-y-6">
-                        <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 card-shadow overflow-hidden relative"
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 card-shadow overflow-hidden relative"
                             id="summary-card">
                             <div class="absolute top-0 right-0 p-4">
                                 <span
@@ -331,17 +382,17 @@
                                     Jasa</span>
                             </div>
 
-                            <h4 class="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Biaya
+                            <h4 class="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-2">Biaya
                                 Pembangunan</h4>
-                            <div class="text-4xl font-black text-slate-900 mb-2" id="total-display">Rp 225.000</div>
-                            <p class="text-[10px] text-slate-400 mb-8">*Belum termasuk biaya infra tahunan</p>
+                            <div class="text-4xl font-black text-slate-900 dark:text-white mb-2" id="total-display">Rp 225.000</div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-8">*Belum termasuk biaya infra tahunan</p>
 
                             <div id="summary-details" class="space-y-4 text-sm">
-                                <div class="flex justify-between text-slate-500 italic">
+                                <div class="flex justify-between text-slate-500 dark:text-slate-400 italic">
                                     <span>Deployment Fee (Setup)</span>
                                     <span>150.000</span>
                                 </div>
-                                <div class="flex justify-between border-t border-slate-50 pt-4 text-slate-700">
+                                <div class="flex justify-between border-t border-slate-50 dark:border-slate-700 pt-4 text-slate-700 dark:text-slate-300">
                                     <span>Pembangunan Halaman</span>
                                     <span id="sum-page" class="font-bold">75.000</span>
                                 </div>
@@ -357,10 +408,10 @@
 
                             <div class="mt-8 pt-6 border-t border-slate-100">
                                 <div
-                                    class="flex items-center gap-2 mb-2 text-indigo-900 font-bold text-xs uppercase tracking-tight">
+                                    class="flex items-center gap-2 mb-2 text-indigo-900 dark:text-indigo-300 font-bold text-xs uppercase tracking-tight">
                                     <i class="fas fa-server"></i> Estimasi Infra (Pihak Ke-3)
                                 </div>
-                                <p class="text-[11px] text-slate-500 leading-relaxed">
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
                                     Estimasi domain & hosting mulai <strong>Rp 300.000 / tahun</strong>. Dibayarkan
                                     langsung ke provider agar transparan & Anda punya hak milik penuh.
                                 </p>
@@ -373,13 +424,13 @@
                         </div>
 
                         <!-- Maintenance Check -->
-                        <div class="bg-white p-6 rounded-3xl border border-slate-100 card-shadow">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-100 dark:border-slate-700 card-shadow">
                             <label class="flex items-start gap-4 cursor-pointer">
                                 <input type="checkbox" id="check-maintenance"
                                     class="mt-1 w-5 h-5 text-indigo-600 rounded">
                                 <div class="text-sm">
-                                    <p class="font-bold text-slate-800">Tambahkan Maintenance</p>
-                                    <p class="text-xs text-slate-500">Hanya 70.000 / bulan (Mulai dari bulan kedua)</p>
+                                    <p class="font-bold text-slate-800 dark:text-white">Tambahkan Maintenance</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Hanya 70.000 / bulan (Mulai dari bulan kedua)</p>
                                 </div>
                             </label>
                             <p class="mt-2 text-[10px] text-indigo-600 font-bold italic">*Bulan pertama terlindungi Garansi Kalender 30 Hari.</p>
@@ -392,28 +443,28 @@
     </section>
 
     <!-- Info Detail Section -->
-    <section id="layanan" class="py-24 bg-slate-50 px-6">
+    <section id="layanan" class="py-24 bg-slate-50 dark:bg-slate-950 px-6">
         <div class="max-w-6xl mx-auto space-y-12">
 
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Deployment & Infrastruktur -->
-                <div class="bg-white p-10 rounded-[3rem] card-shadow border-t-4 border-indigo-600">
+                <div class="bg-white dark:bg-slate-900 p-10 rounded-[3rem] card-shadow border-t-4 border-indigo-600">
                     <div
                         class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-3xl flex items-center justify-center text-2xl mb-8">
                         <i class="fas fa-cloud-upload-alt"></i>
                     </div>
-                    <h3 class="text-2xl font-extrabold mb-6">Infrastruktur & Deployment</h3>
-                    <div class="space-y-6 text-sm text-slate-600">
+                    <h3 class="text-2xl font-extrabold mb-6 dark:text-white">Infrastruktur & Deployment</h3>
+                    <div class="space-y-6 text-sm text-slate-600 dark:text-slate-400">
                         <div>
-                            <p class="font-bold text-slate-800 flex justify-between items-center">
+                            <p class="font-bold text-slate-800 dark:text-white flex justify-between items-center">
                                 <span>Deployment Fee</span>
                                 <span class="text-indigo-600">Rp 150.000</span>
                             </p>
                             <p class="mt-1">Biaya satu kali untuk jasa setup server, konfigurasi domain, dan instalasi
                                 SSL agar website bisa diakses dengan aman (HTTPS).</p>
                         </div>
-                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                            <p class="font-bold text-slate-800 flex justify-between items-center mb-2">
+                        <div class="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
+                            <p class="font-bold text-slate-800 dark:text-white flex justify-between items-center mb-2">
                                 <span>Biaya Hosting & Domain</span>
                                 <span class="text-emerald-600">Estimasi Rp 300rb/thn</span>
                             </p>
@@ -427,24 +478,24 @@
                 </div>
 
                 <!-- Maintenance & Garansi -->
-                <div class="bg-white p-10 rounded-[3rem] card-shadow">
+                <div class="bg-white dark:bg-slate-900 p-10 rounded-[3rem] card-shadow">
                     <div
                         class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center text-2xl mb-8">
                         <i class="fas fa-shield-check"></i>
                     </div>
-                    <h3 class="text-2xl font-extrabold mb-6">Maintenance & Garansi</h3>
-                    <ul class="space-y-6 text-sm text-slate-600">
+                    <h3 class="text-2xl font-extrabold mb-6 dark:text-white">Maintenance & Garansi</h3>
+                    <ul class="space-y-6 text-sm text-slate-600 dark:text-slate-400">
                         <li class="flex gap-4">
                             <div class="mt-1 text-emerald-500"><i class="fas fa-check-circle"></i></div>
                             <div>
-                                <p class="font-bold text-slate-800">Monitoring & Backup</p>
+                                <p class="font-bold text-slate-800 dark:text-white">Monitoring & Backup</p>
                                 <p>Monitoring uptime 24/7 dan backup database bulanan ke GDrive/Telegram Anda.</p>
                             </div>
                         </li>
                         <li class="flex gap-4">
                             <div class="mt-1 text-emerald-500"><i class="fas fa-check-circle"></i></div>
                             <div>
-                                <p class="font-bold text-slate-800">Update Konten Ringan</p>
+                                <p class="font-bold text-slate-800 dark:text-white">Update Konten Ringan</p>
                                 <p>Bantu ganti teks/foto ringan maksimal 1 jam kerja per bulan.</p>
                             </div>
                         </li>
@@ -459,7 +510,7 @@
             </div>
 
             <!-- Developer Section (New) -->
-            <div id="developer" class="bg-white p-10 md:p-16 rounded-[3rem] card-shadow border border-slate-100">
+            <div id="developer" class="bg-white dark:bg-slate-900 p-10 md:p-16 rounded-[3rem] card-shadow border border-slate-100 dark:border-slate-800">
                 <div class="grid md:grid-cols-12 gap-12 items-center">
                     <div class="md:col-span-4 flex justify-center">
                         <div class="relative">
@@ -468,7 +519,7 @@
                                 <i class="fas fa-user-ninja"></i>
                             </div>
                             <div
-                                class="absolute -bottom-4 -right-4 bg-white p-3 rounded-2xl shadow-xl flex gap-3 text-indigo-600">
+                                class="absolute -bottom-4 -right-4 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-xl flex gap-3 text-indigo-600">
                                 <a href="https://www.linkedin.com/in/farhan-a-776289223/" target="_blank"
                                     class="hover:scale-110 transition"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://farhan136.github.io/my-self/" target="_blank"
@@ -479,8 +530,8 @@
                     <div class="md:col-span-8">
                         <span class="text-indigo-600 font-bold text-xs uppercase tracking-widest mb-2 block">Sosok di
                             Balik DevelopedByFarhan</span>
-                        <h3 class="text-3xl font-extrabold mb-4">Farhan A.</h3>
-                        <p class="text-slate-600 leading-relaxed mb-6">
+                        <h3 class="text-3xl font-extrabold mb-4 dark:text-white">Farhan A.</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                             Saya adalah seorang pengembang web yang berfokus pada efisiensi koding dan transparansi
                             bisnis. Melalui <strong>DevelopedByFarhan</strong>, saya ingin membantu pelaku usaha
                             mendapatkan
@@ -494,7 +545,7 @@
                                 <i class="fas fa-external-link-alt"></i> Lihat Portofolio
                             </a>
                             <a href="https://www.linkedin.com/in/farhan-a-776289223/" target="_blank"
-                                class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition inline-flex items-center gap-2">
+                                class="bg-slate-900 dark:bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 dark:hover:bg-indigo-700 transition inline-flex items-center gap-2">
                                 <i class="fab fa-linkedin"></i> Hubungkan di LinkedIn
                             </a>
                         </div>
@@ -544,20 +595,20 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 bg-white border-t border-slate-100 text-center">
+    <footer class="py-12 px-6 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 text-center">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
                 <div
-                    class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white text-xs shadow-sm">
+                    class="w-8 h-8 bg-slate-900 dark:bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs shadow-sm">
                     <i class="fas fa-terminal"></i>
                 </div>
-                <span class="font-bold uppercase tracking-tighter italic text-xl text-slate-900">DevelopedBy<span
+                <span class="font-bold uppercase tracking-tighter italic text-xl text-slate-900 dark:text-white">DevelopedBy<span
                         class="text-indigo-600">Farhan</span></span>
             </div>
             <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                <p class="text-slate-400 text-xs">Handcrafted by <a href="https://farhan136.github.io/my-self/"
+                <p class="text-slate-400 dark:text-slate-500 text-xs">Handcrafted by <a href="https://farhan136.github.io/my-self/"
                         target="_blank"
-                        class="text-slate-900 font-bold hover:text-indigo-600 transition underline underline-offset-4">Farhan
+                        class="text-slate-900 dark:text-white font-bold hover:text-indigo-600 transition underline underline-offset-4">Farhan
                         A.</a></p>
                 <div class="flex gap-4 text-slate-400">
                     <a href="https://www.linkedin.com/in/farhan-a-776289223/" target="_blank"
@@ -654,6 +705,14 @@
 
                 window.open(`https://wa.me/6285723173141?text=${msg}`, '_blank');
             });
+
+            // Dark mode toggle
+            function toggleDark() {
+                const html = document.documentElement;
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            }
+            $('#dark-toggle, #dark-toggle-mobile').on('click', toggleDark);
 
             // Init
             calculate();

@@ -253,16 +253,25 @@
                                     </div>
                                 </label>
 
-                                <label class="relative cursor-pointer">
-                                    <input type="checkbox" class="page-check hidden checkbox-card" data-price="75000">
-                                    <div
-                                        class="card-content p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800">
-                                        <div class="flex justify-between font-bold mb-1"><span>Halaman Kustom</span>
-                                            <span>75.000</span>
-                                        </div>
-                                        <p class="text-xs text-slate-500 dark:text-slate-400">Sesuai permintaan kebutuhan spesifik Anda.</p>
+                                <!-- Halaman Kustom dengan Qty -->
+                                <div id="custom-page-card"
+                                    class="p-5 border-2 border-slate-100 dark:border-slate-700 rounded-2xl transition-all-custom flex flex-col h-full dark:bg-slate-800"
+                                    style="cursor:default;">
+                                    <div class="flex justify-between font-bold mb-1">
+                                        <span>Halaman Kustom</span>
+                                        <span>75.000 / hal</span>
                                     </div>
-                                </label>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Sesuai permintaan kebutuhan spesifik Anda. Pilih jumlah halaman yang dibutuhkan.</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <button type="button" id="custom-page-minus"
+                                            class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white font-bold text-lg flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">−</button>
+                                        <span id="custom-page-qty" class="text-lg font-extrabold text-indigo-600 min-w-[2rem] text-center">0</span>
+                                        <button type="button" id="custom-page-plus"
+                                            class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white font-bold text-lg flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">+</button>
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 ml-1">halaman</span>
+                                        <span id="custom-page-subtotal" class="ml-auto text-sm font-bold text-indigo-600 hidden"></span>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- CMS -->
@@ -292,33 +301,83 @@
                                 <h4 class="font-bold text-slate-800 dark:text-white mb-4">Fitur Tambahan</h4>
                                 <div class="space-y-3">
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
-                                            class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="250000">
                                         <div class="text-sm">
-                                            <p class="font-bold">Payment Gateway</p>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">250.000 (Otomatis)</p>
+                                            <p class="font-bold">💳 Payment Gateway</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">250.000 — <strong class="text-slate-600 dark:text-slate-300">Jasa setup & konfigurasi</strong> payment gateway ke website Anda. Biaya langganan payment gateway dibayar langsung ke penyedia, atas nama Anda.</p>
                                         </div>
                                     </label>
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
-                                            class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="30000">
                                         <div class="text-sm">
-                                            <p class="font-bold">Google Maps</p>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">30.000 (Integrasi Toko)</p>
+                                            <p class="font-bold">📍 Google Maps</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">30.000 — Embed peta lokasi toko/kantor ke website.</p>
                                         </div>
                                     </label>
                                     <label
-                                        class="flex items-center gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
                                         <input type="checkbox"
-                                            class="feature-check w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
                                             data-price="100000">
                                         <div class="text-sm">
-                                            <p class="font-bold">Micro-site / LinkBio</p>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">100.000 (Khusus Instagram)</p>
+                                            <p class="font-bold">🔗 Micro-site / LinkBio</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">100.000 — Halaman link khusus untuk bio Instagram/sosmed.</p>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        <input type="checkbox"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            data-price="100000">
+                                        <div class="text-sm">
+                                            <p class="font-bold">📬 Formulir Email Otomatis</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">100.000 — Notifikasi email otomatis saat ada pesan masuk dari website. Menggunakan akun email Anda sendiri (Gmail) — <span class="text-amber-600 dark:text-amber-400 font-semibold">gratis s/d ~100 notif/hari</span>. Jika lebih dari itu, upgrade Google Workspace ~Rp 100rb/bln langsung ke Google.</p>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        <input type="checkbox"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            data-price="100000">
+                                        <div class="text-sm">
+                                            <p class="font-bold">🌐 Multi-Bahasa (ID / EN)</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">100.000 — Tambah tombol toggle bahasa Indonesia & Inggris di website.</p>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        <input type="checkbox"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            data-price="150000">
+                                        <div class="text-sm">
+                                            <p class="font-bold">📊 Setup Analytics</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">150.000 — <strong class="text-slate-600 dark:text-slate-300">Jasa setup & konfigurasi</strong> Google Analytics + Search Console. Layanan analitiknya sendiri <span class="text-emerald-600 dark:text-emerald-400 font-semibold">100% gratis dari Google</span>, tidak ada biaya bulanan.</p>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        <input type="checkbox"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            data-price="200000">
+                                        <div class="text-sm">
+                                            <p class="font-bold">🤖 Live Chat Widget</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">200.000 — <strong class="text-slate-600 dark:text-slate-300">Jasa setup</strong> widget live chat di website Anda. <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Gratis tanpa batas</span> chat & agent. Opsional: hapus branding widget ~Rp 430rb/bln (dibayar langsung ke penyedia).</p>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition dark:text-white">
+                                        <input type="checkbox"
+                                            class="feature-check mt-1 w-5 h-5 rounded border-slate-300 text-indigo-600"
+                                            data-price="120000">
+                                        <div class="text-sm">
+                                            <p class="font-bold">🔍 SEO Dasar</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">120.000 — Konfigurasi meta tags, sitemap, & schema markup agar website lebih mudah ditemukan di Google. <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Tidak ada biaya bulanan.</span></p>
                                         </div>
                                     </label>
                                 </div>
@@ -629,9 +688,25 @@
         $(document).ready(function () {
             const FIXED_SETUP = 150000;
             const BASE_HOME = 75000;
+            const CUSTOM_PAGE_PRICE = 75000;
+            let customPageQty = 0;
 
             function formatNumber(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            function updateCustomPageCard() {
+                const qty = customPageQty;
+                $('#custom-page-qty').text(qty);
+                if (qty > 0) {
+                    const subtotal = qty * CUSTOM_PAGE_PRICE;
+                    $('#custom-page-subtotal').text('= ' + formatNumber(subtotal)).removeClass('hidden');
+                    $('#custom-page-card').addClass('border-indigo-500').removeClass('border-slate-100 dark:border-slate-700');
+                } else {
+                    $('#custom-page-subtotal').addClass('hidden');
+                    $('#custom-page-card').removeClass('border-indigo-500').addClass('border-slate-100');
+                }
+                calculate();
             }
 
             function calculate() {
@@ -657,6 +732,8 @@
                     $('.page-check:checked').each(function () {
                         pageTotal += parseInt($(this).data('price'));
                     });
+                    // Tambah halaman kustom dari qty
+                    pageTotal += customPageQty * CUSTOM_PAGE_PRICE;
 
                     let cmsTotal = 0;
                     if ($('#check-cms').is(':checked')) {
@@ -688,6 +765,18 @@
                 }
             }
 
+            // Qty controls for Halaman Kustom
+            $('#custom-page-plus').on('click', function () {
+                customPageQty++;
+                updateCustomPageCard();
+            });
+            $('#custom-page-minus').on('click', function () {
+                if (customPageQty > 0) {
+                    customPageQty--;
+                    updateCustomPageCard();
+                }
+            });
+
             // Events
             $('input').on('change', calculate);
 
@@ -703,7 +792,7 @@
                     msg += "- Maintenance: " + ($('#check-maintenance').is(':checked') ? "Ya" : "Tidak");
                 }
 
-                window.open(`https://wa.me/6285723173141?text=${msg}`, '_blank');
+                window.open(`https://wa.me/6285723193141?text=${msg}`, '_blank');
             });
 
             // Dark mode toggle

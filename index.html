@@ -282,7 +282,7 @@
                                             <i class="fas fa-edit text-indigo-400"></i> Sistem Dinamis (CMS)
                                         </h4>
                                         <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pilih ini jika Anda ingin
-                                            mengedit isi konten sendiri via Admin Panel. Biaya ini dihitung 50% dari
+                                            mengedit isi konten sendiri via Admin Panel. Biaya ini dihitung 60% dari
                                             total halaman yang dipilih.</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
@@ -456,8 +456,12 @@
                                     <span id="sum-page" class="font-bold">75.000</span>
                                 </div>
                                 <div id="sum-cms-row" class="hidden flex justify-between text-indigo-600 font-medium">
-                                    <span>Sistem CMS (50%)</span>
+                                    <span>Sistem CMS (60%)</span>
                                     <span id="sum-cms">0</span>
+                                </div>
+                                <div id="sum-feature-row" class="hidden flex justify-between text-indigo-600">
+                                    <span>Fitur Tambahan</span>
+                                    <span id="sum-feature">0</span>
                                 </div>
                                 <div id="sum-design-row" class="hidden flex justify-between text-indigo-600">
                                     <span>Desain Advance</span>
@@ -737,7 +741,7 @@
 
                     let cmsTotal = 0;
                     if ($('#check-cms').is(':checked')) {
-                        cmsTotal = pageTotal * 0.5;
+                        cmsTotal = pageTotal * 0.6;
                         $('#sum-cms-row').removeClass('hidden');
                     } else {
                         $('#sum-cms-row').addClass('hidden');
@@ -756,12 +760,21 @@
                         featureTotal += parseInt($(this).data('price'));
                     });
 
+                    // Update UI summary
+                    if (featureTotal > 0) {
+                        $('#sum-feature-row').removeClass('hidden');
+                        $('#sum-feature').text(formatNumber(featureTotal));
+                    } else {
+                        $('#sum-feature-row').addClass('hidden');
+                    }
+
                     let grandTotal = FIXED_SETUP + pageTotal + cmsTotal + designTotal + featureTotal;
 
                     // Updates UI
                     $('#total-display').text("Rp " + formatNumber(grandTotal));
                     $('#sum-page').text(formatNumber(pageTotal));
                     $('#sum-cms').text(formatNumber(cmsTotal));
+                    $('#sum-feature').text(formatNumber(featureTotal));
                 }
             }
 
@@ -822,8 +835,8 @@
                     lines.push("");
                     lines.push("⚙️ SISTEM CMS (Admin Panel):");
                     if ($('#check-cms').is(':checked')) {
-                        const cmsTotal = pageCost * 0.5;
-                        lines.push("  ✅ Ya — Rp " + formatNumber(cmsTotal) + " (50% dari total halaman)");
+                        const cmsTotal = pageCost * 0.6;
+                        lines.push("  ✅ Ya — Rp " + formatNumber(cmsTotal) + " (60% dari total halaman)");
                     } else {
                         lines.push("  ❌ Tidak");
                     }

@@ -492,7 +492,7 @@
                                     <p class="text-xs text-slate-500 dark:text-slate-400">Hanya 70.000 / bulan (Mulai dari bulan kedua)</p>
                                 </div>
                             </label>
-                            <p class="mt-2 text-[10px] text-indigo-600 font-bold italic">*Bulan pertama terlindungi Garansi 30 Hari Kalender.</p>
+                            <p class="mt-2 text-[10px] text-indigo-600 font-bold italic">*Bulan pertama terlindungi Garansi Kalender 30 Hari.</p>
                         </div>
                     </div>
                 </div>
@@ -781,18 +781,102 @@
             $('input').on('change', calculate);
 
             $('#cta-whatsapp').on('click', function () {
-                let msg = "Halo DevelopedByFarhan, saya ingin konsultasi proyek website.%0A";
+                const enc = (str) => encodeURIComponent(str);
+                let lines = [];
+
+                lines.push("Halo Farhan, saya tertarik menggunakan jasa DevelopedByFarhan. 🙏");
+                lines.push("");
+                lines.push("═══════════════════════════");
+                lines.push("📋 RINGKASAN PILIHAN SAYA");
+                lines.push("═══════════════════════════");
 
                 if ($('#check-complex').is(':checked')) {
-                    msg += "Kebutuhan: Sistem Kustom/Kompleks.";
+                    lines.push("");
+                    lines.push("🔧 Tipe Proyek: Sistem Kustom / Kompleks");
+                    lines.push("(Toko Online / Sistem HR / Inventaris / Aplikasi Web Khusus)");
+                    lines.push("");
+                    lines.push("Saya ingin konsultasi lebih lanjut mengenai kebutuhan spesifik saya.");
                 } else {
-                    msg += "Ringkasan Pilihan:%0A- Halaman: " + ($('.page-check:checked').length + 1) + " Section%0A";
-                    msg += "- CMS: " + ($('#check-cms').is(':checked') ? "Ya" : "Tidak") + "%0A";
-                    msg += "- Desain: " + ($('input[name="design"]:checked').val() > 0 ? "Advance" : "Simple") + "%0A";
-                    msg += "- Maintenance: " + ($('#check-maintenance').is(':checked') ? "Ya" : "Tidak");
+                    // Halaman
+                    lines.push("");
+                    lines.push("📄 HALAMAN YANG DIPILIH:");
+                    lines.push("  ✅ Home / Landing Section — Rp 75.000");
+
+                    const pageLabels = {
+                        50000: null, // akan diambil dari teks
+                    };
+                    let pageCost = 75000;
+                    $('.page-check:checked').each(function () {
+                        const price = parseInt($(this).data('price'));
+                        const label = $(this).closest('label').find('.font-bold').first().text().trim();
+                        lines.push("  ✅ " + label + " — Rp " + formatNumber(price));
+                        pageCost += price;
+                    });
+
+                    if (customPageQty > 0) {
+                        lines.push("  ✅ Halaman Kustom × " + customPageQty + " — Rp " + formatNumber(customPageQty * CUSTOM_PAGE_PRICE));
+                        pageCost += customPageQty * CUSTOM_PAGE_PRICE;
+                    }
+
+                    // CMS
+                    lines.push("");
+                    lines.push("⚙️ SISTEM CMS (Admin Panel):");
+                    if ($('#check-cms').is(':checked')) {
+                        const cmsTotal = pageCost * 0.5;
+                        lines.push("  ✅ Ya — Rp " + formatNumber(cmsTotal) + " (50% dari total halaman)");
+                    } else {
+                        lines.push("  ❌ Tidak");
+                    }
+
+                    // Desain
+                    const designVal = parseInt($('input[name="design"]:checked').val());
+                    lines.push("");
+                    lines.push("🎨 LEVEL DESAIN:");
+                    if (designVal > 0) {
+                        lines.push("  ✅ Advance (Custom Layout & Animasi) — Rp " + formatNumber(designVal));
+                    } else {
+                        lines.push("  ✅ Simple (Gratis)");
+                    }
+
+                    // Fitur Tambahan
+                    const selectedFeatures = [];
+                    $('.feature-check:checked').each(function () {
+                        const price = parseInt($(this).data('price'));
+                        const label = $(this).closest('label').find('.font-bold').first().text().trim();
+                        selectedFeatures.push("  ✅ " + label + " — Rp " + formatNumber(price));
+                    });
+
+                    lines.push("");
+                    lines.push("🔌 FITUR TAMBAHAN:");
+                    if (selectedFeatures.length > 0) {
+                        selectedFeatures.forEach(f => lines.push(f));
+                    } else {
+                        lines.push("  ❌ Tidak ada");
+                    }
+
+                    // Maintenance
+                    lines.push("");
+                    lines.push("🛡️ MAINTENANCE BULANAN:");
+                    if ($('#check-maintenance').is(':checked')) {
+                        lines.push("  ✅ Ya — Rp 70.000/bulan (mulai bulan ke-2)");
+                    } else {
+                        lines.push("  ❌ Tidak");
+                    }
+
+                    // Total
+                    const totalText = $('#total-display').text();
+                    lines.push("");
+                    lines.push("═══════════════════════════");
+                    lines.push("💰 ESTIMASI TOTAL JASA: " + totalText);
+                    lines.push("(belum termasuk biaya infra/hosting tahunan)");
+                    lines.push("═══════════════════════════");
                 }
 
-                window.open(`https://wa.me/6285723193141?text=${msg}`, '_blank');
+                lines.push("");
+                lines.push("Mohon bantuannya untuk proses selanjutnya. Terima kasih! 🙏");
+
+                const fullMsg = enc(lines.join("\n"));
+                window.open(`https://wa.me/6285723193141?text=${fullMsg}`, '_blank');
             });
 
             // Dark mode toggle

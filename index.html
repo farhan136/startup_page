@@ -122,6 +122,249 @@
         button {
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
+
+        /* Floating WhatsApp Button */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wa-float-btn {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45);
+            transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease;
+            text-decoration: none;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .wa-float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .wa-float-btn::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: rgba(37, 211, 102, 0.3);
+            animation: wa-pulse 2s ease-out infinite;
+        }
+
+        @keyframes wa-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            70% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .wa-float-label {
+            background: white;
+            color: #128c7e;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .dark .wa-float-label {
+            background: #1e293b;
+            color: #4ade80;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .wa-float:hover .wa-float-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== LIGHTBOX ===== */
+        #lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        #lightbox-modal.active {
+            display: flex;
+            animation: lb-fade-in 0.25s ease;
+        }
+
+        @keyframes lb-fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #lightbox-img-wrap {
+            position: relative;
+            max-width: min(92vw, 1100px);
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: lb-scale-in 0.28s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes lb-scale-in {
+            from {
+                transform: scale(0.88);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #lightbox-img {
+            max-width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+            transition: opacity 0.2s ease;
+        }
+
+        #lightbox-img.fading {
+            opacity: 0;
+        }
+
+        .lb-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 100000;
+            backdrop-filter: blur(6px);
+        }
+
+        .lb-arrow:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #lb-prev {
+            left: 16px;
+        }
+
+        #lb-next {
+            right: 16px;
+        }
+
+        #lb-close {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100000;
+            transition: background 0.2s, transform 0.2s;
+            backdrop-filter: blur(6px);
+        }
+
+        #lb-close:hover {
+            background: rgba(239, 68, 68, 0.5);
+            transform: scale(1.12);
+        }
+
+        #lb-caption {
+            margin-top: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        #lb-counter {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 4px;
+        }
+
+        #lb-dots {
+            display: flex;
+            gap: 7px;
+            margin-top: 14px;
+            justify-content: center;
+        }
+
+        .lb-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .lb-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
     </style>
 </head>
 
@@ -148,8 +391,9 @@
                     <i class="fas fa-moon text-sm dark:hidden"></i>
                     <i class="fas fa-sun text-sm hidden dark:inline text-amber-400"></i>
                 </button>
-                <a href="https://wa.me/YOUR_NUMBER"
-                    class="bg-indigo-600 text-white px-6 py-2.5 rounded-full hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">Konsultasi</a>
+                <a href="https://wa.me/6285723193141"
+                    class="bg-indigo-600 text-white px-6 py-2.5 rounded-full hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">Konsultasi
+                    Gratis</a>
             </div>
             <!-- Mobile dark toggle -->
             <div class="flex md:hidden items-center gap-3">
@@ -181,9 +425,8 @@
                 <span class="gradient-text">Harga Jujur.</span>
             </h1>
             <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12">
-                Di <strong>DevelopedByFarhan</strong>, kami membangun teknologi dari nol untuk bisnis Anda. Anda hanya
-                membayar
-                apa yang Anda butuhkan tanpa biaya paket yang membingungkan.
+                Di <strong>DevelopedByFarhan</strong>, kami bantu bisnis Anda tampil profesional di internet — mudah
+                ditemukan customer, mudah dihubungi, dan aktif 24 jam. Harga jelas, tanpa kejutan.
             </p>
             <a href="#kalkulator"
                 class="bg-slate-900 dark:bg-white dark:text-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition shadow-xl inline-flex items-center gap-3 group">
@@ -193,17 +436,120 @@
         </div>
     </section>
 
+    <!-- WHY WEBSITE MATTERS Section -->
+    <section class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span
+                    class="inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 px-4 py-2 rounded-full text-xs font-bold mb-4">
+                    <i class="fas fa-lightbulb"></i> Kenapa Bisnis Butuh Website?
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900 dark:text-white">
+                    Customer cari bisnis Anda<br><span class="gradient-text">lewat Google, bukan Instagram.</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Tanpa website, bisnis Anda tidak terlihat
+                    di Google. Dengan website yang benar, Anda bisa dapat customer baru — bahkan saat tidur.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 group-hover:scale-110 transition-transform duration-300">
+                        🤝
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2">Customer Lebih Percaya</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Bisnis dengan website terlihat
+                        lebih serius dan terpercaya. Customer baru lebih berani order atau menghubungi Anda.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-emerald-200 dark:shadow-emerald-900/30 group-hover:scale-110 transition-transform duration-300">
+                        🕐
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2">Aktif 24 Jam Sehari</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Website bekerja saat Anda
+                        tidur. Informasi produk, harga, dan kontak tersedia kapan saja — tanpa perlu Anda online terus.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-fuchsia-500 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-fuchsia-200 dark:shadow-fuchsia-900/30 group-hover:scale-110 transition-transform duration-300">
+                        📱
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2">Mudah Dihubungi</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Tombol WhatsApp, nomor
+                        telepon, alamat, semua tersedia rapi. Customer tidak perlu scroll Instagram lama-lama untuk
+                        nemuin kontak Anda.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-amber-200 dark:shadow-amber-900/30 group-hover:scale-110 transition-transform duration-300">
+                        🔍
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2">Ditemukan di Google</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Saat orang ketik "laundry
+                        terdekat" atau "catering murah Jakarta" di Google — bisnis Anda bisa muncul. Instagram tidak
+                        bisa lakukan ini.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 group-hover:scale-110 transition-transform duration-300">
+                        🏆
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2">Tampil Lebih Profesional</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Website yang bagus bikin
+                        bisnis Anda terlihat sebanding dengan brand besar — meski baru mulai. First impression yang kuat
+                        = lebih banyak yang order.</p>
+                </div>
+
+                <!-- Card 6 — CTA -->
+                <div
+                    class="bg-gradient-to-br from-indigo-600 to-violet-700 p-8 rounded-3xl text-white card-shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            🚀
+                        </div>
+                        <h3 class="font-extrabold text-lg mb-2">Siap Punya Website?</h3>
+                        <p class="text-sm text-indigo-100 leading-relaxed mb-6">Konsultasi gratis dulu — ceritakan
+                            bisnis Anda, kami bantu cari solusi yang tepat dan sesuai budget.</p>
+                    </div>
+                    <a href="https://wa.me/6285723193141?text=Halo%20Farhan%2C%20saya%20ingin%20konsultasi%20website%20untuk%20bisnis%20saya%20%F0%9F%99%8F"
+                        target="_blank" id="cta-why-wa"
+                        class="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl hover:bg-indigo-50 transition text-sm">
+                        <i class="fab fa-whatsapp text-emerald-600"></i> Chat Gratis via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Kalkulator Section -->
     <section id="kalkulator" class="py-20 px-6 bg-white dark:bg-slate-900">
+
         <div class="max-w-6xl mx-auto">
             <div class="grid lg:grid-cols-12 gap-12">
 
                 <!-- Input Area -->
                 <div class="lg:col-span-8">
                     <div class="mb-10">
-                        <h2 class="text-3xl font-extrabold mb-2 text-slate-900 dark:text-white">Pilih Komponen Web</h2>
-                        <p class="text-slate-500 dark:text-slate-400">Sesuaikan fitur dengan budget dan kebutuhan bisnis
-                            Anda.</p>
+                        <h2 class="text-3xl font-extrabold mb-2 text-slate-900 dark:text-white">Hitung Estimasi Biaya
+                        </h2>
+                        <p class="text-slate-500 dark:text-slate-400">Pilih fitur yang Anda butuhkan — harga langsung
+                            terhitung otomatis. Transparan, tanpa biaya tersembunyi.</p>
                     </div>
 
                     <!-- Pilihan Sistem Kustom (Utama) -->
@@ -329,11 +675,11 @@
                                 <div class="flex items-center justify-between gap-6">
                                     <div>
                                         <h4 class="font-bold flex items-center gap-2">
-                                            <i class="fas fa-edit text-indigo-400"></i> Sistem Dinamis (CMS)
+                                            <i class="fas fa-edit text-indigo-400"></i> Kelola Konten Sendiri
                                         </h4>
-                                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pilih ini jika Anda ingin
-                                            mengedit isi konten sendiri via Admin Panel. Biaya ini dihitung 60% dari
-                                            total halaman yang dipilih.</p>
+                                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Aktifkan jika Anda ingin
+                                            bisa ganti teks, foto, atau promo di website sendiri — tanpa perlu hubungi
+                                            developer. Biaya +60% dari total halaman.</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" id="check-cms" class="sr-only peer">
@@ -522,16 +868,15 @@
 
                             <h4
                                 class="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-2">
-                                Biaya
-                                Pembangunan</h4>
+                                Estimasi Biaya Jasa</h4>
                             <div class="text-4xl font-black text-slate-900 dark:text-white mb-2" id="total-display">Rp
                                 375.000</div>
-                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-8">*Belum termasuk biaya infra
-                                tahunan</p>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-8">*Belum termasuk domain &
+                                hosting tahunan</p>
 
                             <div id="summary-details" class="space-y-4 text-sm">
                                 <div class="flex justify-between text-slate-500 dark:text-slate-400 italic">
-                                    <span>Deployment Fee (Setup)</span>
+                                    <span>Biaya Setup Awal</span>
                                     <span>225.000</span>
                                 </div>
                                 <div
@@ -540,7 +885,7 @@
                                     <span id="sum-page" class="font-bold">150.000</span>
                                 </div>
                                 <div id="sum-cms-row" class="hidden flex justify-between text-indigo-600 font-medium">
-                                    <span>Sistem CMS (60%)</span>
+                                    <span>Kelola Konten Sendiri (+60%)</span>
                                     <span id="sum-cms">0</span>
                                 </div>
                                 <div id="sum-feature-row" class="hidden flex justify-between text-indigo-600">
@@ -556,11 +901,11 @@
                             <div class="mt-8 pt-6 border-t border-slate-100">
                                 <div
                                     class="flex items-center gap-2 mb-2 text-indigo-900 dark:text-indigo-300 font-bold text-xs uppercase tracking-tight">
-                                    <i class="fas fa-server"></i> Estimasi Infra (Pihak Ke-3)
+                                    <i class="fas fa-globe"></i> Domain & Hosting (Pihak Ke-3)
                                 </div>
                                 <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                                    Estimasi domain & hosting mulai <strong>Rp 300.000 / tahun</strong>. Dibayarkan
-                                    langsung ke provider agar transparan & Anda punya hak milik penuh.
+                                    Estimasi mulai <strong>Rp 300.000 / tahun</strong>. Anda bayar langsung ke provider
+                                    — bukan lewat kami — agar kepemilikan website 100% milik Anda.
                                 </p>
                             </div>
 
@@ -577,15 +922,16 @@
                                 <input type="checkbox" id="check-maintenance"
                                     class="mt-1 w-5 h-5 text-indigo-600 rounded">
                                 <div class="text-sm">
-                                    <p class="font-bold text-slate-800 dark:text-white">Tambahkan Maintenance</p>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400">Hanya 99.000 / bulan (Mulai
-                                        dari bulan kedua)</p>
+                                    <p class="font-bold text-slate-800 dark:text-white">Tambah Perawatan Bulanan</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Hanya Rp 99.000 / bulan —
+                                        website selalu terawat & siap diakses customer.</p>
                                 </div>
                             </label>
                             <p
                                 class="mt-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl border border-indigo-100 dark:border-indigo-800 text-[11px] text-indigo-700 dark:text-indigo-300 leading-relaxed font-semibold">
-                                📌 Harga di atas sudah termasuk <strong>Revisi Minor 3x</strong>.<br> Perombakan besar
-                                diluar lingkup awal akan dikenakan perhitungan ulang biaya.
+                                📌 Sudah termasuk <strong>3x revisi</strong> setelah selesai.<br> Perubahan besar di
+                                luar
+                                kesepakatan awal dihitung ulang secara transparan.
                             </p>
                         </div>
                     </div>
@@ -606,26 +952,25 @@
                         class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-3xl flex items-center justify-center text-2xl mb-8">
                         <i class="fas fa-cloud-upload-alt"></i>
                     </div>
-                    <h3 class="text-2xl font-extrabold mb-6 dark:text-white">Infrastruktur & Deployment</h3>
+                    <h3 class="text-2xl font-extrabold mb-6 dark:text-white">Website Siap Online</h3>
                     <div class="space-y-6 text-sm text-slate-600 dark:text-slate-400">
                         <div>
                             <p class="font-bold text-slate-800 dark:text-white flex justify-between items-center">
-                                <span>Deployment Fee</span>
+                                <span>Biaya Setup Awal (Sekali Bayar)</span>
                                 <span class="text-indigo-600">Rp 225.000</span>
                             </p>
-                            <p class="mt-1">Biaya satu kali untuk jasa setup server, konfigurasi domain, dan instalasi
-                                SSL agar website bisa diakses dengan aman (HTTPS).</p>
+                            <p class="mt-1">Kami urus semua teknis — dari pendaftaran domain, setup server, hingga
+                                keamanan website — agar bisnis Anda bisa langsung online dengan aman.</p>
                         </div>
                         <div
                             class="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
                             <p class="font-bold text-slate-800 dark:text-white flex justify-between items-center mb-2">
-                                <span>Biaya Hosting & Domain</span>
+                                <span>Sewa Domain & Hosting Tahunan</span>
                                 <span class="text-emerald-600">Estimasi Rp 300rb/thn</span>
                             </p>
                             <p class="text-xs leading-relaxed">
-                                Anda membayar <strong>langsung ke provider hosting</strong> (seperti
-                                Niagahoster/Dewaweb). Kami membantu proses setupnya. Hal ini dilakukan agar biaya
-                                transparan dan kepemilikan aset 100% milik Anda.
+                                Dibayar langsung ke provider (Niagahoster/Dewaweb) — bukan ke kami. Tujuannya agar
+                                Anda sebagai pemilik bisnis <strong>punya kendali penuh</strong> atas website Anda.
                             </p>
                         </div>
                     </div>
@@ -655,13 +1000,13 @@
                         </li>
                         <li class="mt-4 p-4 bg-amber-50 rounded-2xl border border-amber-200">
                             <p class="text-[11px] text-amber-800 leading-relaxed font-semibold mb-2">
-                                ⚠️ Garansi Bug & Error: Hanya berlaku selama masa maintenance aktif. Perbaikan error
-                                kodingan gratis, bukan penambahan fitur baru.
+                                ⚠️ Garansi: Jika ada yang tidak berjalan sesuai kesepakatan, kami perbaiki gratis —
+                                selama masa perawatan aktif. Bukan untuk penambahan fitur baru.
                             </p>
                             <p class="text-[11px] text-amber-800 leading-relaxed font-semibold">
-                                💡 Aturan Revisi: Harga pembangunan awal sudah termasuk <strong>Revisi Minor 3x</strong>
-                                (ubah warna/teks ringan). Perombakan atau perubahan arah desain akan dikenakan
-                                <strong>perhitungan ulang biaya</strong> secara transparan.
+                                💡 Revisi: Sudah termasuk <strong>3x perubahan ringan</strong> (ganti teks/warna).
+                                Perubahan besar yang diluar kesepakatan awal akan didiskusikan harganya secara
+                                <strong>terbuka dan transparan</strong>.
                             </p>
                         </li>
                     </ul>
@@ -705,15 +1050,6 @@
                             <!-- Badge -->
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span
-                                    class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
-                                    <span
-                                        class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                                    Live Project
-                                </span>
-                                <span
-                                    class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Laravel
-                                    · Filament</span>
-                                <span
                                     class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Booking
                                     System</span>
                             </div>
@@ -739,21 +1075,21 @@
                                         class="w-7 h-7 bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
                                         <i class="fas fa-shield-alt"></i>
                                     </div>
-                                    <span>Admin panel Filament + role-based access</span>
+                                    <span>Pemilik bisa kelola booking & jadwal sendiri</span>
                                 </div>
                                 <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                                     <div
                                         class="w-7 h-7 bg-fuchsia-100 dark:bg-fuchsia-900/50 text-fuchsia-600 dark:text-fuchsia-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
                                         <i class="fas fa-file-invoice-dollar"></i>
                                     </div>
-                                    <span>Laporan transaksi &amp; export data</span>
+                                    <span>Laporan pemasukan bisa dilihat kapan saja</span>
                                 </div>
                                 <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                                     <div
                                         class="w-7 h-7 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
                                         <i class="fas fa-mobile-alt"></i>
                                     </div>
-                                    <span>Responsive — tampil mulus di HP &amp; Desktop</span>
+                                    <span>Tampil rapi di HP maupun laptop customer</span>
                                 </div>
                             </div>
                         </div>
@@ -761,12 +1097,12 @@
                         <!-- Tech Stack -->
                         <div>
                             <!-- CTA Button — relative link -->
-                            <a href="futsal_app/beranda_1.png" target="_blank" id="btn-portofolio-futsal"
-                                class="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 dark:shadow-indigo-900/40 hover:from-indigo-700 hover:to-violet-700 transition-all group/btn">
+                            <button onclick="openLightbox(0)" id="btn-portofolio-futsal"
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 dark:shadow-indigo-900/40 hover:from-indigo-700 hover:to-violet-700 transition-all group/btn cursor-pointer">
                                 <i class="fas fa-images"></i>
                                 Lihat Screenshot Lengkap
                                 <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -774,8 +1110,8 @@
                     <div class="lg:col-span-7 p-6 flex flex-col gap-4">
 
                         <!-- Main big screenshot -->
-                        <a href="futsal_app/beranda_1.png" target="_blank"
-                            class="portfolio-img-link block relative rounded-2xl overflow-hidden group/img flex-shrink-0"
+                        <button onclick="openLightbox(0)"
+                            class="portfolio-img-link block relative rounded-2xl overflow-hidden group/img flex-shrink-0 cursor-pointer w-full"
                             style="height:240px;">
                             <img src="futsal_app/beranda_1.png" alt="Beranda Futsal App"
                                 class="w-full h-full object-cover object-top transition-transform duration-700 group-hover/img:scale-105">
@@ -785,66 +1121,70 @@
                                     class="text-white text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">🏠
                                     Halaman Beranda</span>
                             </div>
-                        </a>
+                            <div
+                                class="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                <i class="fas fa-expand text-white text-xs"></i>
+                            </div>
+                        </button>
 
-                        <!-- Thumbnail row -->
+                        <!-- Thumbnail grid -->
                         <div class="grid grid-cols-4 gap-3">
-                            <a href="futsal_app/beranda_2.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            <button onclick="openLightbox(1)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:90px;">
                                 <img src="futsal_app/beranda_2.png" alt="Beranda 2"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
-                                    <span class="text-white text-[9px] font-bold text-center">Beranda</span>
+                                    <span class="text-white text-[9px] font-bold">Beranda</span>
                                 </div>
-                            </a>
-                            <a href="futsal_app/dashboard_admin.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            </button>
+                            <button onclick="openLightbox(2)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:90px;">
-                                <img src="futsal_app/dashboard_admin.png" alt="Dashboard Admin"
+                                <img src="futsal_app/dashboard_admin.png" alt="Dashboard"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
-                                    <span class="text-white text-[9px] font-bold text-center">Dashboard</span>
+                                    <span class="text-white text-[9px] font-bold">Dashboard</span>
                                 </div>
-                            </a>
-                            <a href="futsal_app/detail_booking.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            </button>
+                            <button onclick="openLightbox(3)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:90px;">
                                 <img src="futsal_app/detail_booking.png" alt="Detail Booking"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
-                                    <span class="text-white text-[9px] font-bold text-center">Booking</span>
+                                    <span class="text-white text-[9px] font-bold">Booking</span>
                                 </div>
-                            </a>
-                            <a href="futsal_app/list_lapangan_admin.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            </button>
+                            <button onclick="openLightbox(4)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:90px;">
-                                <img src="futsal_app/list_lapangan_admin.png" alt="List Lapangan Admin"
+                                <img src="futsal_app/list_lapangan_admin.png" alt="List Lapangan"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
-                                    <span class="text-white text-[9px] font-bold text-center">Lapangan</span>
+                                    <span class="text-white text-[9px] font-bold">Lapangan</span>
                                 </div>
-                            </a>
+                            </button>
                         </div>
 
                         <!-- Second thumbnail row -->
                         <div class="grid grid-cols-3 gap-3">
-                            <a href="futsal_app/laporan_admin.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            <button onclick="openLightbox(5)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:80px;">
-                                <img src="futsal_app/laporan_admin.png" alt="Laporan Admin"
+                                <img src="futsal_app/laporan_admin.png" alt="Laporan"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
                                     <span class="text-white text-[9px] font-bold">Laporan</span>
                                 </div>
-                            </a>
-                            <a href="futsal_app/pengaturan_admin.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            </button>
+                            <button onclick="openLightbox(6)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:80px;">
                                 <img src="futsal_app/pengaturan_admin.png" alt="Pengaturan"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
@@ -852,25 +1192,25 @@
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
                                     <span class="text-white text-[9px] font-bold">Setting</span>
                                 </div>
-                            </a>
-                            <a href="futsal_app/list_booking_admin.png" target="_blank"
-                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                            </button>
+                            <button onclick="openLightbox(7)"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden cursor-pointer"
                                 style="height:80px;">
-                                <img src="futsal_app/list_booking_admin.png" alt="List Booking Admin"
+                                <img src="futsal_app/list_booking_admin.png" alt="All Booking"
                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
                                     <span class="text-white text-[9px] font-bold">All Booking</span>
                                 </div>
-                            </a>
+                            </button>
                         </div>
 
-                        <!-- View all link -->
+                        <!-- Hint -->
                         <div class="text-center pt-2">
                             <p class="text-xs text-slate-400 dark:text-slate-500">
-                                <i class="fas fa-images mr-1"></i>
-                                Klik gambar untuk memperbesar · Total <strong
-                                    class="text-slate-600 dark:text-slate-300">13 screenshot</strong> tersedia
+                                <i class="fas fa-expand-alt mr-1"></i>
+                                Klik gambar untuk buka galeri · <strong class="text-slate-600 dark:text-slate-300">8
+                                    screenshot</strong> tersedia
                             </p>
                         </div>
 
@@ -909,12 +1249,10 @@
                             Balik DevelopedByFarhan</span>
                         <h3 class="text-3xl font-extrabold mb-4 dark:text-white">Farhan A.</h3>
                         <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                            Saya adalah seorang pengembang web yang berfokus pada efisiensi koding dan transparansi
-                            bisnis. Melalui <strong>DevelopedByFarhan</strong>, saya ingin membantu pelaku usaha
-                            mendapatkan
-                            website berkualitas tinggi tanpa harus terbebani oleh biaya "paket premium" yang seringkali
-                            tidak masuk akal. Semua proyek saya kerjakan dengan koding manual (Custom Code) untuk
-                            memastikan keamanan dan kecepatan maksimal.
+                            Saya membantu pemilik bisnis — dari UMKM hingga startup — untuk tampil profesional dan
+                            dipercaya di internet. Lewat <strong>DevelopedByFarhan</strong>, saya pastikan website Anda
+                            bukan sekadar tampilan, tapi benar-benar membantu bisnis tumbuh: mudah ditemukan di Google,
+                            mudah dihubungi customer, dan aktif 24 jam sehari.
                         </p>
                         <div class="flex flex-wrap gap-4">
                             <a href="https://farhan136.github.io/my-self/" target="_blank"
@@ -939,30 +1277,31 @@
                         <div class="w-16 h-16 bg-white/10 rounded-3xl flex items-center justify-center text-2xl mb-8">
                             <i class="fas fa-rocket"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold mb-4 text-white">Kenapa DevelopedByFarhan?</h3>
-                        <p class="text-indigo-100 text-sm leading-relaxed">Kami membangun website dari nol dengan koding
-                            manual untuk performa yang jauh lebih unggul dibanding CMS berat.</p>
+                        <h3 class="text-3xl font-extrabold mb-4 text-white">Kenapa Pilih DevelopedByFarhan?</h3>
+                        <p class="text-indigo-100 text-sm leading-relaxed">Website yang kami buat bukan sekadar cantik —
+                            tapi benar-benar bekerja untuk bisnis Anda setiap hari.</p>
                     </div>
                     <div class="md:col-span-2 grid sm:grid-cols-2 gap-8">
                         <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
-                            <p class="font-bold mb-2 text-white">Performa Kilat</p>
-                            <p class="text-xs text-indigo-100">Tanpa plugin berlebihan yang memberatkan server. Loading
-                                cepat meningkatkan peringkat Google.</p>
+                            <p class="font-bold mb-2 text-white">⚡ Cepat Diakses</p>
+                            <p class="text-xs text-indigo-100">Website yang lambat bikin customer kabur. Website kami
+                                teroptimasi agar customer betah dan tidak pergi ke kompetitor.</p>
                         </div>
                         <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
-                            <p class="font-bold mb-2 text-white">Keamanan Super</p>
-                            <p class="text-xs text-indigo-100">Meminimalisir celah keamanan dari tema/plugin pihak
-                                ketiga yang sering diserang hacker.</p>
+                            <p class="font-bold mb-2 text-white">🤝 Terlihat Terpercaya</p>
+                            <p class="text-xs text-indigo-100">Bisnis dengan website profesional lebih dipercaya
+                                customer
+                                baru dibanding yang hanya punya Instagram.</p>
                         </div>
                         <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
-                            <p class="font-bold mb-2 text-white">Kendali Penuh</p>
-                            <p class="text-xs text-indigo-100">Struktur website dibuat khusus untuk Anda, memberikan
-                                fleksibilitas tanpa batas dalam pengembangan.</p>
+                            <p class="font-bold mb-2 text-white">📱 Mobile Friendly</p>
+                            <p class="text-xs text-indigo-100">Lebih dari 80% customer browsing lewat HP. Website kami
+                                tampil sempurna di semua ukuran layar.</p>
                         </div>
                         <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
-                            <p class="font-bold mb-2 text-white">Kepemilikan Aset</p>
-                            <p class="text-xs text-indigo-100">Segala akun hosting & domain atas nama Anda sendiri.
-                                Transparan dan aman untuk masa depan bisnis.</p>
+                            <p class="font-bold mb-2 text-white">🔑 Milik Anda Sepenuhnya</p>
+                            <p class="text-xs text-indigo-100">Domain & hosting atas nama Anda. Kami tidak pegang
+                                kendali — bisnis Anda, website Anda, keputusan Anda.</p>
                         </div>
                     </div>
                 </div>
@@ -1219,7 +1558,113 @@
             // Init
             calculate();
         });
+
+        // ===== LIGHTBOX =====
+        const lbImages = [
+            { src: 'futsal_app/beranda_1.png', caption: '🏠 Halaman Beranda' },
+            { src: 'futsal_app/beranda_2.png', caption: '🏠 Beranda (Lanjutan)' },
+            { src: 'futsal_app/dashboard_admin.png', caption: '📊 Dashboard Admin' },
+            { src: 'futsal_app/detail_booking.png', caption: '📋 Detail Booking' },
+            { src: 'futsal_app/list_lapangan_admin.png', caption: '🏟️ Daftar Lapangan' },
+            { src: 'futsal_app/laporan_admin.png', caption: '📈 Laporan Pemasukan' },
+            { src: 'futsal_app/pengaturan_admin.png', caption: '⚙️ Pengaturan' },
+            { src: 'futsal_app/list_booking_admin.png', caption: '📅 Semua Booking' },
+        ];
+        let lbCurrent = 0;
+
+        function openLightbox(index) {
+            lbCurrent = index;
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lbRender();
+            buildDots();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lbNavigate(dir) {
+            const img = document.getElementById('lightbox-img');
+            img.classList.add('fading');
+            setTimeout(() => {
+                lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length;
+                lbRender();
+                img.classList.remove('fading');
+            }, 180);
+        }
+
+        function lbRender() {
+            const data = lbImages[lbCurrent];
+            document.getElementById('lightbox-img').src = data.src;
+            document.getElementById('lightbox-img').alt = data.caption;
+            document.getElementById('lb-caption').textContent = data.caption;
+            document.getElementById('lb-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
+            // update dots
+            document.querySelectorAll('.lb-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === lbCurrent);
+            });
+        }
+
+        function buildDots() {
+            const wrap = document.getElementById('lb-dots');
+            wrap.innerHTML = '';
+            lbImages.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = 'lb-dot' + (i === lbCurrent ? ' active' : '');
+                dot.onclick = () => { lbCurrent = i; lbRender(); };
+                wrap.appendChild(dot);
+            });
+        }
+
+        // Click backdrop to close
+        document.getElementById('lightbox-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            const modal = document.getElementById('lightbox-modal');
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lbNavigate(-1);
+            if (e.key === 'ArrowRight') lbNavigate(1);
+        });
     </script>
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Lightbox">
+        <!-- Close -->
+        <button id="lb-close" onclick="closeLightbox()" aria-label="Tutup">
+            <i class="fas fa-times"></i>
+        </button>
+        <!-- Prev -->
+        <button class="lb-arrow" id="lb-prev" onclick="lbNavigate(-1)" aria-label="Sebelumnya">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <!-- Image wrap -->
+        <div id="lightbox-img-wrap">
+            <img id="lightbox-img" src="" alt="Portfolio Screenshot">
+            <div id="lb-caption"></div>
+            <div id="lb-counter"></div>
+            <div id="lb-dots"></div>
+        </div>
+        <!-- Next -->
+        <button class="lb-arrow" id="lb-next" onclick="lbNavigate(1)" aria-label="Berikutnya">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="wa-float" id="wa-float-btn">
+        <span class="wa-float-label">Konsultasi Gratis 👋</span>
+        <a href="https://wa.me/6285723193141?text=Halo%20Farhan%2C%20saya%20tertarik%20konsultasi%20website%20untuk%20bisnis%20saya.%20%F0%9F%99%8F"
+            target="_blank" class="wa-float-btn" aria-label="Chat WhatsApp" id="wa-floating-link">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
 </body>
 
 </html>

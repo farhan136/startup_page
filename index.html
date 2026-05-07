@@ -140,6 +140,7 @@
             </div>
             <div class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600 dark:text-slate-300">
                 <a href="#kalkulator" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Kalkulator</a>
+                <a href="#portofolio" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Portofolio</a>
                 <a href="#developer" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Profil Dev</a>
                 <!-- Dark Mode Toggle -->
                 <button id="dark-toggle" aria-label="Toggle dark mode"
@@ -665,9 +666,226 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
 
-            <!-- Developer Section (New) -->
+        </div>
+    </section>
+
+
+
+    <!-- Portofolio Section -->
+    <section id="portofolio" class="py-24 px-6 bg-white dark:bg-slate-900 overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span
+                    class="inline-flex items-center gap-2 bg-violet-50 dark:bg-violet-950 border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-300 px-4 py-2 rounded-full text-xs font-bold mb-4">
+                    <i class="fas fa-briefcase"></i> Karya Nyata
+                </span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 dark:text-white">Portofolio <span
+                        class="gradient-text">Terkini</span></h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Proyek nyata yang sudah dibangun — bukan
+                    mockup, bukan demo. Lihat sendiri kualitasnya.</p>
+            </div>
+
+            <!-- Portfolio Card — Futsal Booking System -->
+            <div
+                class="portfolio-card group relative bg-slate-50 dark:bg-slate-800 rounded-[3rem] overflow-hidden border border-slate-100 dark:border-slate-700 card-shadow hover:shadow-2xl hover:shadow-violet-100 dark:hover:shadow-violet-900/20 transition-all duration-500">
+
+                <!-- Top accent bar -->
+                <div class="h-1.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500"></div>
+
+                <div class="grid lg:grid-cols-12 gap-0">
+
+                    <!-- Left: Info Panel -->
+                    <div class="lg:col-span-5 p-10 md:p-14 flex flex-col justify-between">
+                        <div>
+                            <!-- Badge -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span
+                                    class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
+                                    <span
+                                        class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                                    Live Project
+                                </span>
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Laravel
+                                    · Filament</span>
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Booking
+                                    System</span>
+                            </div>
+
+                            <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight">⚽
+                                Sistem Booking<br>Lapangan Futsal</h3>
+                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-sm mb-8">
+                                Aplikasi web lengkap untuk manajemen reservasi lapangan futsal. Dilengkapi panel admin
+                                Filament, manajemen jadwal otomatis, dan notifikasi booking real-time.
+                            </p>
+
+                            <!-- Feature List -->
+                            <div class="space-y-3 mb-10">
+                                <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <div
+                                        class="w-7 h-7 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <span>Manajemen booking &amp; jadwal lapangan otomatis</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <div
+                                        class="w-7 h-7 bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <span>Admin panel Filament + role-based access</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <div
+                                        class="w-7 h-7 bg-fuchsia-100 dark:bg-fuchsia-900/50 text-fuchsia-600 dark:text-fuchsia-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <span>Laporan transaksi &amp; export data</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <div
+                                        class="w-7 h-7 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0 text-xs">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <span>Responsive — tampil mulus di HP &amp; Desktop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div>
+                            <!-- CTA Button — relative link -->
+                            <a href="futsal_app/beranda_1.png" target="_blank" id="btn-portofolio-futsal"
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 dark:shadow-indigo-900/40 hover:from-indigo-700 hover:to-violet-700 transition-all group/btn">
+                                <i class="fas fa-images"></i>
+                                Lihat Screenshot Lengkap
+                                <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Screenshot Gallery -->
+                    <div class="lg:col-span-7 p-6 flex flex-col gap-4">
+
+                        <!-- Main big screenshot -->
+                        <a href="futsal_app/beranda_1.png" target="_blank"
+                            class="portfolio-img-link block relative rounded-2xl overflow-hidden group/img flex-shrink-0"
+                            style="height:240px;">
+                            <img src="futsal_app/beranda_1.png" alt="Beranda Futsal App"
+                                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover/img:scale-105">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <span
+                                    class="text-white text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">🏠
+                                    Halaman Beranda</span>
+                            </div>
+                        </a>
+
+                        <!-- Thumbnail row -->
+                        <div class="grid grid-cols-4 gap-3">
+                            <a href="futsal_app/beranda_2.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:90px;">
+                                <img src="futsal_app/beranda_2.png" alt="Beranda 2"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold text-center">Beranda</span>
+                                </div>
+                            </a>
+                            <a href="futsal_app/dashboard_admin.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:90px;">
+                                <img src="futsal_app/dashboard_admin.png" alt="Dashboard Admin"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold text-center">Dashboard</span>
+                                </div>
+                            </a>
+                            <a href="futsal_app/detail_booking.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:90px;">
+                                <img src="futsal_app/detail_booking.png" alt="Detail Booking"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold text-center">Booking</span>
+                                </div>
+                            </a>
+                            <a href="futsal_app/list_lapangan_admin.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:90px;">
+                                <img src="futsal_app/list_lapangan_admin.png" alt="List Lapangan Admin"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold text-center">Lapangan</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Second thumbnail row -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <a href="futsal_app/laporan_admin.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:80px;">
+                                <img src="futsal_app/laporan_admin.png" alt="Laporan Admin"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold">Laporan</span>
+                                </div>
+                            </a>
+                            <a href="futsal_app/pengaturan_admin.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:80px;">
+                                <img src="futsal_app/pengaturan_admin.png" alt="Pengaturan"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold">Setting</span>
+                                </div>
+                            </a>
+                            <a href="futsal_app/list_booking_admin.png" target="_blank"
+                                class="portfolio-thumb group/thumb relative rounded-xl overflow-hidden"
+                                style="height:80px;">
+                                <img src="futsal_app/list_booking_admin.png" alt="List Booking Admin"
+                                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-110">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-end justify-center pb-1">
+                                    <span class="text-white text-[9px] font-bold">All Booking</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- View all link -->
+                        <div class="text-center pt-2">
+                            <p class="text-xs text-slate-400 dark:text-slate-500">
+                                <i class="fas fa-images mr-1"></i>
+                                Klik gambar untuk memperbesar · Total <strong
+                                    class="text-slate-600 dark:text-slate-300">13 screenshot</strong> tersedia
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Developer & Kenapa Kami Section -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-950 px-6">
+        <div class="max-w-6xl mx-auto space-y-12">
+
+            <!-- Developer Section -->
             <div id="developer"
                 class="bg-white dark:bg-slate-900 p-10 md:p-16 rounded-[3rem] card-shadow border border-slate-100 dark:border-slate-800">
                 <div class="grid md:grid-cols-12 gap-12 items-center">
@@ -754,6 +972,7 @@
     </section>
 
     <!-- Footer -->
+
     <footer class="py-12 px-6 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 text-center">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">

@@ -382,6 +382,7 @@
                         class="text-indigo-600">Farhan</span></span>
             </div>
             <div class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600 dark:text-slate-300">
+                <a href="#simulasi" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Simulasi</a>
                 <a href="#kalkulator" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Kalkulator</a>
                 <a href="#portofolio" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Portofolio</a>
                 <a href="#developer" class="hover:text-indigo-600 transition dark:hover:text-indigo-400">Profil Dev</a>
@@ -391,7 +392,7 @@
                     <i class="fas fa-moon text-sm dark:hidden"></i>
                     <i class="fas fa-sun text-sm hidden dark:inline text-amber-400"></i>
                 </button>
-                <a href="https://wa.me/6285178238156"
+                <a href="https://wa.me/6285178238156" id="nav-wa-btn"
                     class="bg-indigo-600 text-white px-6 py-2.5 rounded-full hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">Konsultasi
                     Gratis</a>
             </div>
@@ -407,7 +408,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6">
+    <section id="hero" class="pt-40 pb-20 px-6">
         <div class="max-w-5xl mx-auto text-center">
             <div class="flex flex-col items-center gap-4 mb-8">
                 <div
@@ -437,7 +438,7 @@
     </section>
 
     <!-- WHY WEBSITE MATTERS Section -->
-    <section class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
+    <section id="benefits" class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-14">
                 <span
@@ -533,6 +534,169 @@
                         <i class="fab fa-whatsapp text-emerald-600"></i> Chat Gratis via WhatsApp
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Live Preview Controller Section -->
+    <section id="simulasi"
+        class="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden border-t border-b border-slate-900">
+        <!-- Abstract glowing circles -->
+        <div class="absolute -left-10 top-1/4 w-[350px] h-[350px] bg-indigo-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -right-10 bottom-1/4 w-[350px] h-[350px] bg-violet-500/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span
+                    class="text-xs font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full">Simulasi
+                    Interaktif</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 tracking-tight text-white">
+                    Pilih Jenis Usaha & Lihat Tampilannya!
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    Klik tombol kategori di bawah untuk mengganti simulasi tampilan web/aplikasi secara interaktif.
+                    Begitu indahnya produk Anda nanti akan dilihat oleh calon pembeli.
+                </p>
+            </div>
+
+            <!-- Interactive Selector Grid -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+                <button onclick="changeDemo('kuliner')" id="btn-kuliner"
+                    class="demo-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-indigo-600 text-white shadow-lg transition-all duration-200">
+                    <i class="fa-solid fa-utensils mr-2"></i> Kuliner & Cafe
+                </button>
+                <button onclick="changeDemo('toko')" id="btn-toko"
+                    class="demo-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+                    <i class="fa-solid fa-store mr-2"></i> Toko Sembako/Pakaian
+                </button>
+                <button onclick="changeDemo('jasa')" id="btn-jasa"
+                    class="demo-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+                    <i class="fa-solid fa-scissors mr-2"></i> Barber & Salon Jasa
+                </button>
+                <button onclick="changeDemo('properti')" id="btn-properti"
+                    class="demo-btn px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+                    <i class="fa-solid fa-house-chimney mr-2"></i> Landing Page Sales
+                </button>
+            </div>
+
+            <!-- Live Mockup Viewports Grid (Mobile & Desktop Mockup side-by-side) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
+
+                <!-- Explanation panel -->
+                <div class="lg:col-span-5 space-y-5 text-center lg:text-left">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3 justify-center lg:justify-start"
+                        id="demo-title">
+                        Aplikasi Kuliner & Cafe
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" id="demo-desc">
+                        Sempurna untuk rumah makan, kedai kopi, atau katering. Dilengkapi dengan menu foto beresolusi
+                        tinggi, daftar harga transparan, dan formulir checkout langsung terhubung ke WhatsApp dapur
+                        Anda.
+                    </p>
+
+                    <ul class="space-y-3 text-slate-300 text-sm text-left inline-block lg:block">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> <span id="demo-feat-1">E-Menu
+                                Interaktif Tanpa Instalasi</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> <span id="demo-feat-2">Kustomisasi
+                                Paket Promo Hemat</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> <span id="demo-feat-3">Kalkulasi
+                                Ongkir Mandiri</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-2 text-center lg:text-left">
+                        <a href="#kalkulator" id="demo-cta"
+                            class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:opacity-90 shadow-lg transition-all">
+                            Mau Buat Seperti Ini <i class="fa-solid fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Simulation Visual Output Screen Frame -->
+                <div class="lg:col-span-7 flex justify-center">
+                    <!-- Desktop Frame container simulating responsive design -->
+                    <div
+                        class="w-full max-w-[480px] bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                        <!-- Simulated Top Control bar -->
+                        <div class="bg-slate-950 px-4 py-3 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <!-- Simulated Browser URL Bar -->
+                            <div class="bg-slate-800 text-[10px] text-slate-400 px-6 py-1 rounded-md max-w-xs truncate"
+                                id="demo-url">
+                                domainanda.com/kuliner
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-rotate-right text-xs text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Inside Web App Emulator -->
+                        <div
+                            class="bg-slate-50 text-slate-800 p-4 min-h-[320px] max-h-[400px] overflow-y-auto space-y-4 text-left">
+
+                            <!-- Header / Banner -->
+                            <div class="rounded-xl overflow-hidden relative h-32 bg-slate-900">
+                                <img id="demo-big-img"
+                                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+                                    alt="Main Banner"
+                                    class="w-full h-full object-cover opacity-90 transition-all duration-300">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent flex flex-col justify-end p-4">
+                                    <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest"
+                                        id="demo-tag">Rumah Makan</span>
+                                    <h4 class="text-lg font-bold text-white leading-tight" id="demo-headline">Catering &
+                                        Resto Makmur Jaya</h4>
+                                </div>
+                            </div>
+
+                            <!-- Showcase Menu Items -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-slate-500">Produk
+                                        Unggulan</h5>
+                                    <span class="text-[10px] text-indigo-600 font-bold">Lihat Semua</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3" id="demo-grid-items">
+                                    <!-- Dynamic elements from JS injection -->
+                                </div>
+                            </div>
+
+                            <!-- Testimonial -->
+                            <div
+                                class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-start gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                                    AM
+                                </div>
+                                <div>
+                                    <div class="flex gap-0.5 text-amber-400 text-[10px] mb-0.5">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="text-xs font-bold text-slate-900" id="demo-testi-name">Ahmad Maulana -
+                                        Pelanggan Tetap</p>
+                                    <p class="text-[11px] text-slate-500 italic mt-0.5" id="demo-testi-text">"Kualitas
+                                        rasa tidak pernah berubah, dan pesen lewat web WA-nya cepet banget langsung
+                                        dapet respon!"</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -675,11 +839,14 @@
                                 <div class="flex items-center justify-between gap-6">
                                     <div>
                                         <h4 class="font-bold flex items-center gap-2">
-                                            <i class="fas fa-edit text-indigo-400"></i> Kelola Konten Sendiri
+                                            <i class="fas fa-edit text-indigo-400"></i> Kelola Konten Sendiri (CMS /
+                                            Admin Panel)
                                         </h4>
-                                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Aktifkan jika Anda ingin
-                                            bisa ganti teks, foto, atau promo di website sendiri — tanpa perlu hubungi
-                                            developer. Biaya +60% dari total halaman.</p>
+                                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Aktifkan sistem
+                                            <strong>CMS (Content Management System)</strong> jika Anda ingin bisa
+                                            mengganti teks, foto produk, harga, atau promo di website secara mandiri via
+                                            Admin Panel tanpa perlu menghubungi developer. Biaya +60% dari total
+                                            halaman.</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" id="check-cms" class="sr-only peer">
@@ -869,8 +1036,13 @@
                             <h4
                                 class="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-2">
                                 Estimasi Biaya Jasa</h4>
-                            <div class="text-4xl font-black text-slate-900 dark:text-white mb-2" id="total-display">Rp
-                                375.000</div>
+                            <div class="flex items-baseline flex-wrap gap-2 mb-2">
+                                <div class="text-4xl font-black text-slate-900 dark:text-white" id="total-display">Rp
+                                    375.000</div>
+                                <span
+                                    class="text-[10px] bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full border border-indigo-100 dark:border-indigo-800/60 whitespace-nowrap">Bisa
+                                    Nego</span>
+                            </div>
                             <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-8">*Belum termasuk domain &
                                 hosting tahunan</p>
 
@@ -929,9 +1101,8 @@
                             </label>
                             <p
                                 class="mt-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl border border-indigo-100 dark:border-indigo-800 text-[11px] text-indigo-700 dark:text-indigo-300 leading-relaxed font-semibold">
-                                📌 Sudah termasuk <strong>3x revisi</strong> setelah selesai.<br> Perubahan besar di
-                                luar
-                                kesepakatan awal dihitung ulang secara transparan.
+                                📌 Sudah termasuk <strong>3x revisi</strong> setelah selesai. Budget terbatas?
+                                <strong>Harga masih bisa dinegosiasikan (nego)</strong> sesuai kebutuhan Anda!
                             </p>
                         </div>
                     </div>
@@ -1335,7 +1506,7 @@
                         <i class="fas fa-envelope"></i>
                         <span>farhandevsupportumkm@gmail.com</span>
                     </a>
-                    <a href="https://wa.me/6285178238156" target="_blank"
+                    <a href="https://wa.me/6285178238156" target="_blank" id="footer-wa-btn"
                         class="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                         <i class="fab fa-whatsapp"></i>
                         <span>+62 851-7823-8156</span>
@@ -1351,9 +1522,8 @@
                 </div>
             </div>
         </div>
-        <p class="mt-8 text-[10px] text-slate-300 uppercase tracking-widest">&copy; 2026 DevelopedByFarhan Studio.
-            Integrity in
-            every line of code.</p>
+        <p class="mt-8 text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest" id="footer-copyright">
+            &copy; 2026 DevelopedByFarhan Studio · Integrity in every line of code</p>
     </footer>
 
     <script>
@@ -1554,7 +1724,7 @@
                 }
 
                 lines.push("");
-                lines.push("Mohon bantuannya untuk proses selanjutnya. Terima kasih! 🙏");
+                lines.push("Mohon info untuk proses selanjutnya (saya ingin diskusi budget/nego). Terima kasih! 🙏");
 
                 const fullMsg = enc(lines.join("\n"));
                 window.open(`https://wa.me/6285178238156?text=${fullMsg}`, '_blank');
@@ -1570,7 +1740,252 @@
 
             // Init
             calculate();
+            changeDemo('kuliner');
+
+            // Click backdrop to close
+            const lbModal = document.getElementById('lightbox-modal');
+            if (lbModal) {
+                lbModal.addEventListener('click', function (e) {
+                    if (e.target === this) closeLightbox();
+                });
+            }
+
+            // ===== VISITOR & SECTION TRACKER (Google Sheets Integration) =====
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwO461D5pcoBycYImC-0o4KvXiUgBzc5l1KBnWtkhCzBdpkmFnAtFaTFd_eizuClL3UIA/exec';
+
+            function logEvent(action, details = '') {
+                console.log(`[Tracker] Event logged: ${action} - ${details}`);
+                if (!SCRIPT_URL || SCRIPT_URL.startsWith('YOUR_')) return;
+
+                fetch(`${SCRIPT_URL}?action=${encodeURIComponent(action)}&details=${encodeURIComponent(details)}`, {
+                    mode: 'no-cors',
+                    keepalive: true
+                }).catch(err => console.error('Tracking error:', err));
+            }
+
+            // 1. Track page load
+            logEvent('page_load');
+
+            // 2. Track sections entering the viewport (which section gets viewed the most)
+            const trackedSections = document.querySelectorAll('section[id]');
+            const observedSections = new Set(); // Prevent duplicate logs per session
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        if (!observedSections.has(sectionId)) {
+                            observedSections.add(sectionId);
+                            logEvent('section_view', sectionId);
+                        }
+                    }
+                });
+            }, {
+                root: null, // viewport
+                threshold: 0.25 // triggers when 25% of the section is visible
+            });
+
+            trackedSections.forEach(section => observer.observe(section));
+
+            // 3. Track CTA conversion clicks (WhatsApp clicks)
+            $('#cta-whatsapp').on('click', () => logEvent('click_wa_kalkulator'));
+            $('#cta-why-wa').on('click', () => logEvent('click_wa_benefits'));
+            $('#wa-floating-link').on('click', () => logEvent('click_wa_floating'));
+            $('#nav-wa-btn').on('click', () => logEvent('click_wa_navbar'));
+            $('#footer-wa-btn').on('click', () => logEvent('click_wa_footer'));
         });
+
+        // ===== INTERACTIVE DEMO VIEWER =====
+        const demos = {
+            kuliner: {
+                title: "Aplikasi Kuliner & Cafe",
+                desc: "Sempurna untuk rumah makan, kedai kopi, atau katering. Dilengkapi dengan menu foto beresolusi tinggi, daftar harga transparan, dan formulir checkout langsung terhubung ke WhatsApp dapur Anda.",
+                logo: "Warung Makmur",
+                tagline: "Kuliner Lezat & Higienis",
+                img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                tag: "KULINER & CAFE",
+                url: "warungmakmur.com",
+                feat1: "E-Menu Interaktif Tanpa Instalasi",
+                feat2: "Kustomisasi Paket Promo Hemat",
+                feat3: "Formulir WhatsApp Pesanan Dapur",
+                testi_name: "Ahmad Maulana - Pelanggan Tetap",
+                testi_text: '"Kualitas rasa tidak pernah berubah, dan pesen lewat web WA-nya cepet banget langsung dapet respon!"',
+                p1_icon: "fa-burger",
+                p2_icon: "fa-drumstick-bite"
+            },
+            toko: {
+                title: "Toko Sembako & Fashion",
+                desc: "Solusi hemat sebagai ganti aplikasi kasir yang ribet. Pajang seluruh stok baju, hijab, kosmetik, atau sembako lengkap dengan spesifikasi ukuran atau rasa di satu halaman katalog.",
+                logo: "Safiya Fashion",
+                tagline: "Tren Hijab & Gamis Anggun",
+                img: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974&auto=format&fit=crop",
+                tag: "TOKO ONLINE (E-COMMERCE)",
+                url: "safiyastyle.id",
+                feat1: "Manajemen Keranjang Belanja Mandiri",
+                feat2: "Integrasi Cek Ongkir JNE/J&T otomatis",
+                feat3: "Checkout Langsung dengan Alamat Kirim",
+                testi_name: "Siti Rahma - Pemilik Butik",
+                testi_text: '"Sejak ada katalog web ini, admin WA saya ga capek ngetik satu-satu manual total belanjaan customer."',
+                p1_icon: "fa-shirt",
+                p2_icon: "fa-bag-shopping"
+            },
+            jasa: {
+                title: "Barber, Bengkel & Jasa",
+                desc: "Optimalkan jadwal pekerjaan jasa Anda. Sangat cocok untuk jasa potong rambut, cleaning service rumah, service AC, montir mobil panggil, atau salon kecantikan.",
+                logo: "Gentle Cut",
+                tagline: "Gaya Rambut Maskulin Maksimal",
+                img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
+                tag: "PROFIL JASA & PORTOFOLIO",
+                url: "gentlecutbarber.com",
+                feat1: "Sistem Pemesanan Jam/Booking Online",
+                feat2: "Galeri Foto Portofolio Terbaik",
+                feat3: "Daftar Harga Treatment Terbuka",
+                testi_name: "Hendra - Pelanggan Setia",
+                testi_text: '"Lebih praktis karena bisa janjian jam berapa potong, jadi ga perlu ngantre lama di barbershopnya."',
+                p1_icon: "fa-scissors",
+                p2_icon: "fa-spray-can"
+            },
+            properti: {
+                title: "Landing Page Sales & Agen",
+                desc: "Hadirkan daya pikat terbaik untuk produk bernilai tinggi. Dirancang optimal untuk sales mobil, agen properti, asuransi jiwa, atau paket tour perjalanan wisata.",
+                logo: "Artha Realty",
+                tagline: "Hunian Modern Strategis & Murah",
+                img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+                tag: "LANDING PAGE MARKETING",
+                url: "salesproperti-jakarta.com",
+                feat1: "Formulir Konsultasi Minat Utama",
+                feat2: "Spesifikasi Brosur Format PDF",
+                feat3: "Tombol Langsung Telpon & WhatsApp",
+                testi_name: "Rudi Hartono - Developer Properti",
+                testi_text: '"Sangat menolong dalam mempresentasikan proyek rumah terbaru ke calon prospek via link singkat."',
+                p1_icon: "fa-house",
+                p2_icon: "fa-key"
+            }
+        };
+
+        function changeDemo(category) {
+            // Remove active states from all buttons
+            document.querySelectorAll('.demo-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            // Set active state to the clicked category button
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+                activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+            }
+
+            const data = demos[category];
+
+            // Update main details panel
+            const demoTitle = document.getElementById('demo-title');
+            const demoDesc = document.getElementById('demo-desc');
+            const f1 = document.getElementById('demo-feat-1');
+            const f2 = document.getElementById('demo-feat-2');
+            const f3 = document.getElementById('demo-feat-3');
+
+            demoTitle.innerHTML = `<i class="fa-solid ${getIcon(category)} mr-2 text-indigo-500"></i> ${data.title}`;
+            demoDesc.textContent = data.desc;
+            f1.textContent = data.feat1;
+            f2.textContent = data.feat2;
+            f3.textContent = data.feat3;
+
+            // Update internal phone visual emulator contents if present
+            const previewLogo = document.getElementById('preview-logo');
+            if (previewLogo) previewLogo.textContent = data.logo;
+
+            const previewTagline = document.getElementById('preview-tagline');
+            if (previewTagline) previewTagline.textContent = data.tagline;
+
+            const previewImg = document.getElementById('preview-img');
+            if (previewImg) previewImg.src = data.img;
+
+            // Dynamic Icons on Phone Products Demo if present
+            const p1Icon = document.getElementById('p1-icon');
+            if (p1Icon) p1Icon.className = `fa-solid ${data.p1_icon} text-lg text-indigo-600`;
+
+            const p2Icon = document.getElementById('p2-icon');
+            if (p2Icon) p2Icon.className = `fa-solid ${data.p2_icon} text-lg text-indigo-600`;
+
+            const previewTestimonial = document.getElementById('preview-testimonial');
+            if (previewTestimonial) previewTestimonial.textContent = data.testi_text;
+
+            // Update Desktop visual emulator elements
+            document.getElementById('demo-big-img').src = data.img;
+            document.getElementById('demo-tag').textContent = data.tag;
+            document.getElementById('demo-headline').textContent = data.title;
+            document.getElementById('demo-url').textContent = `www.${data.url}`;
+            document.getElementById('demo-testi-name').textContent = data.testi_name;
+            document.getElementById('demo-testi-text').textContent = data.testi_text;
+
+            // Re-render simulated products inside mockup to fit niche
+            const gridItems = document.getElementById('demo-grid-items');
+            if (category === 'kuliner') {
+                gridItems.innerHTML = `
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-burger text-amber-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Paket Burger Hemat</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 25.000</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-mug-hot text-amber-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Es Kopi Susu Aren</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 15.000</p>
+                    </div>
+                `;
+            } else if (category === 'toko') {
+                gridItems.innerHTML = `
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-shirt text-purple-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Hijab Syar'i Silk</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 85.000</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-bag-shopping text-purple-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Tas Slempang Mini</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 120.000</p>
+                    </div>
+                `;
+            } else if (category === 'jasa') {
+                gridItems.innerHTML = `
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-scissors text-blue-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Premium Haircut</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 35.000</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-face-smile text-blue-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Cukur + Shaving</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">Rp 50.000</p>
+                    </div>
+                `;
+            } else if (category === 'properti') {
+                gridItems.innerHTML = `
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-house-chimney text-emerald-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Tipe Anggrek (36/72)</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">DP Mulai 5 Juta</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="h-14 bg-slate-100 rounded-md mb-1.5 flex items-center justify-center"><i class="fa-solid fa-key text-emerald-500 text-lg"></i></div>
+                        <p class="text-[10px] font-bold text-slate-800 leading-tight">Tipe Mawar (45/90)</p>
+                        <p class="text-[9px] text-indigo-600 font-extrabold mt-1">DP Mulai 10 Juta</p>
+                    </div>
+                `;
+            }
+        }
+
+        function getIcon(category) {
+            switch (category) {
+                case 'kuliner': return 'fa-utensils';
+                case 'toko': return 'fa-store';
+                case 'jasa': return 'fa-scissors';
+                case 'properti': return 'fa-house-chimney';
+                default: return 'fa-laptop';
+            }
+        }
 
         // ===== LIGHTBOX =====
         const lbImages = [
@@ -1632,15 +2047,10 @@
             });
         }
 
-        // Click backdrop to close
-        document.getElementById('lightbox-modal').addEventListener('click', function (e) {
-            if (e.target === this) closeLightbox();
-        });
-
         // Keyboard navigation
         document.addEventListener('keydown', function (e) {
             const modal = document.getElementById('lightbox-modal');
-            if (!modal.classList.contains('active')) return;
+            if (!modal || !modal.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') lbNavigate(-1);
             if (e.key === 'ArrowRight') lbNavigate(1);
